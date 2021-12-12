@@ -25,3 +25,12 @@ function createGalleryMarkup(galleryItems) {
     })
     .join('');
 }
+refs.gallery.insertAdjacentHTML('beforeend', galleryMarkup);
+
+const onGalleryClick = event => {
+  event.preventDefault();
+  const instance = basicLightbox.create(`
+<img src='${event.target.dataset.source}'>`);
+  instance.show();
+};
+refs.gallery.addEventListener('click', onGalleryClick);
