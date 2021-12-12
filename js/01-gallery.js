@@ -25,12 +25,16 @@ function createGalleryMarkup(galleryItems) {
     })
     .join('');
 }
-refs.gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
+refs.gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 const onGalleryClick = event => {
   event.preventDefault();
+  if (!event.target.classList.contains('gallery__image')) {
+    return;
+  }
   const instance = basicLightbox.create(`
 <img src='${event.target.dataset.source}'>`);
+
   instance.show();
 };
 refs.gallery.addEventListener('click', onGalleryClick);
